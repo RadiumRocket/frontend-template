@@ -1,46 +1,72 @@
-# Getting Started with Create React App
+# Getting started with ${App Name}
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Features
+
+**TODO**: Add libraries when they are fully integrated
+
+- 🏗 Built with [React](https://reactjs.org/)
+- 🚨 Testing powered by [jest](https://jestjs.io/docs/getting-started)
+
+## Set up environment
+
+Before installing the dependencies and running start the project, follow the next steps:
+
+1. Install [nvm](https://github.com/nvm-sh/nvm#installing-and-updating) in case of not have it
+2. Run `nvm install && nvm use && node -v` to use the node version defined on `.nvmrc` file
 
 ## Available Scripts
 
 In the project directory, you can run:
 
-### `yarn start`
+- Run `yarn start` to run the app in the development mode. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Run `yarn test` to run all tests.
+- Run `yarn build` to create a production build.
+- Run `yarn lint` to check the lint.
+- Run `yarn lint:fix` to fix all the lint issues and format with prettier.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Basic structure and configurations
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```
+src/                  // Container to other folders with the source code of the app
+  components/         // App components
+    layout/           // layout for the different pages
+    pages/            // page components
+      index.ts        // export all the page components
+    shared/           // components that are being used on the entire app
+      common/         // app components
+        index.ts      // export all app components
+      ui/             // atomic components
+        index.ts      // export all atomic components
+  config/             // configuration files
+  constants/          // global constants
+  interfaces/         // global interfaces
+  utils/              // reusable functions
+  redux/              // redux modules
+.env                  // environment variables
+package.json          // deps and workspace scripts
+tsconfig.json         // typescript configuration
+README.md             // docs are important
+```
 
-### `yarn test`
+## Page or Component structure
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**Note**: Consider that is not required to have on all cases the `components` folder
 
-### `yarn build`
+Each Page or Component must follow the next structure and the name of it must be in `kebab-case`:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
+example/
+  components/
+    component-a/
+      components/
+        component-c
+      component-a.module.css
+      index.tsx
+    component-b/
+      component-b.module.css
+      index.tsx
+  example.test.tsx              // component test
+  example.module.css            // component style
+  index.tsx                     // component logic
+  types.ts                      // types or interfaces that are being used on the component
+```
