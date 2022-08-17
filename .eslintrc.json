@@ -19,6 +19,7 @@
   },
   "plugins": ["react", "@typescript-eslint", "simple-import-sort"],
   "rules": {
+    "no-duplicate-imports": "error",
     "semi": ["error", "always"],
     "quotes": ["error", "single"],
     "simple-import-sort/imports": "error",
