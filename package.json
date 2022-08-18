@@ -20,9 +20,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "lint": "eslint \"./**/*.{js,jsx,ts,tsx}\"",
-    "format": "prettier --write './**/*.{js,jsx,ts,tsx}' --config ./.prettierrc",
-    "lint:fix": "eslint --fix && yarn format",
+    "lint": "eslint \"./**/*.{ts,tsx,test.ts,test.tsx}\"",
+    "format": "prettier --write './**/*.{ts,tsx,test.ts,test.tsx}' --config ./.prettierrc",
+    "lint:fix": "eslint --fix \"./**/*.{ts,tsx,test.ts,test.tsx}\" && yarn format",
     "pre-commit": "yarn lint && yarn test --watchAll=false",
     "prepare": "husky install"
   },
