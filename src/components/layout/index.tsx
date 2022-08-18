@@ -4,7 +4,7 @@ import { Home, Login } from '../pages';
 import { Footer, Header } from '../shared/common';
 import styles from './layout.module.css';
 
-function Layout() {
+const Layout = () => {
   let currentScreen = <Home />;
   switch (window.location.pathname) {
     case '/login':
@@ -21,6 +21,6 @@ function Layout() {
       <Footer />
     </div>
   );
-}
+};
 
 export default Layout;

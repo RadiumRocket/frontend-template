@@ -2,7 +2,7 @@ import React from 'react';
 
 import styles from './header.module.css';
 
-function Header() {
+const Header = () => {
   return (
     <header>
       <div className={styles.container}>
@@ -38,6 +38,6 @@ function Header() {
       </nav>
     </header>
   );
-}
+};
 
 export default Header;
