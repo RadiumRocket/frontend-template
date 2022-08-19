@@ -24,7 +24,7 @@
     "format": "prettier --write './**/*.{ts,tsx,test.ts,test.tsx}' --config ./.prettierrc",
     "lint:fix": "eslint --fix \"./**/*.{ts,tsx,test.ts,test.tsx}\" && yarn format",
     "pre-commit": "yarn lint && yarn test --watchAll=false",
-    "set:dev": "vercel env pull",
+    "set:dev": "vercel env pull .env.dev",
     "prepare": "husky install"
   },
   "eslintConfig": {
