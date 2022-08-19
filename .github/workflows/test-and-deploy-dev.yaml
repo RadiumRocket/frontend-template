@@ -1,4 +1,4 @@
-name: Test and deploy DEV
+name: Test and deploy
 env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
@@ -13,7 +13,7 @@ on:
       - master
 
 jobs:
-  test-and-deploy-dev:
+  test-and-deploy:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -34,7 +34,7 @@ jobs:
 
       - name: Pull Vercel Environment Information
         # Possible envs => development / preview / production
-        run: yarn vercel pull --yes --environment=development --token=${{ secrets.VERCEL_TOKEN }}
+        run: yarn vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
 
       - name: Build Project Artifacts
         run: yarn vercel build --token=${{ secrets.VERCEL_TOKEN }}
