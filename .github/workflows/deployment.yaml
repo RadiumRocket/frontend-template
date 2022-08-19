@@ -8,7 +8,7 @@ on:
       # Modify on future envs
       - master
 jobs:
-  build:
+  Develop - CI/CD:
     runs-on: ubuntu-latest
     strategy:
       matrix:
