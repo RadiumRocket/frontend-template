@@ -20,10 +20,11 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "type-check": "tsc --noEmit",
     "lint": "eslint \"./**/*.{ts,tsx,test.ts,test.tsx}\"",
     "format": "prettier --write './**/*.{ts,tsx,test.ts,test.tsx}' --config ./.prettierrc",
     "lint:fix": "eslint --fix \"./**/*.{ts,tsx,test.ts,test.tsx}\" && yarn format",
-    "pre-commit": "yarn lint && yarn test --watchAll=false",
+    "pre-commit": "yarn type-check && yarn lint && yarn test --watchAll=false",
     "set:dev": "vercel env pull .env.dev",
     "prepare": "husky install"
   },
