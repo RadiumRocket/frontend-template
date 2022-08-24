@@ -7,25 +7,25 @@
 
 .main {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 0 5%;
+  justify-content: space-between;
   width: 90%;
   height: 250px;
+  padding: 0 5%;
 }
 
 .appName {
   font-size: 2rem;
   font-weight: bold;
-  color: #fff;
+  color: #ffffff;
 }
 
 .license {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  height: 50px;
+  justify-content: space-between;
   width: 90%;
+  height: 50px;
   padding: 0 20px;
   background-color: #ea3354;
 }
@@ -41,13 +41,13 @@
 
 @media screen and (min-width: 750px) {
   .main {
-    padding: 0 20%;
     width: unset;
+    padding: 0 20%;
   }
 
   .license {
-    padding: 0 20px;
     width: calc(60% - 40px);
+    padding: 0 20px;
   }
 
   .socialIcon {
