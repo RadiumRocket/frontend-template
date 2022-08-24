@@ -50,6 +50,7 @@ jobs:
         run: yarn test
 
   deploy:
+    needs: [lint-and-test]
     runs-on: ubuntu-latest
     strategy:
       matrix:
