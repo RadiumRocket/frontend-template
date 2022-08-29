@@ -58,43 +58,12 @@ jobs:
         node-version: [16.17.x]
 
     steps:
-      - uses: actions/checkout@v3
-      - name: Cache global modules
-        id: cache-global-nodemodules
-        uses: actions/cache@v2
-        env:
-          cache-name: cache-global-node-modules
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-build-${{ env.cache-name }}
-
-      - name: Install Vercel CLI
-        if: steps.cache-global-nodemodules.outputs.cache-hit != 'true'
-        run: npm install --global vercel@latest
-
-      - name: Pull Vercel Environment Information
-        # Possible envs => development / preview / production
-        run: vercel pull --yes --environment=development --token=${{ secrets.VERCEL_TOKEN }}
-
-      - name: Build Project Artifacts
-        run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
-
-      - name: Deploy Project Artifacts to Vercel
-        run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
-
-  show-url:
-    needs: [deploy]
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [16.17.x]
-
-    steps:
       - uses: actions/checkout@v2
       - uses: amondnet/vercel-action@v19
         id: vercel
         with:
+          github-comment: true
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          github-token: ${{ secrets.TOKEN_GITHUB }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
