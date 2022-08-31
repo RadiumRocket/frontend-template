@@ -29,8 +29,8 @@ jobs:
           vercel --token ${VERCEL_TOKEN} -m githubCommitSha=${GITHUB_SHA} -m githubCommitAuthorName=franco-marini -m githubCommitAuthorLogin=franco-marini -m githubDeployment=1 -m githubOrg=franco-marini -m githubRepo=${GITHUB_REPOSITORY} -m githubCommitOrg=franco-marini -m githubCommitRepo=${GITHUB_REPOSITORY} -m githubCommitMessage=try another method -m githubCommitRef=${GITHUB_REF_NAME}
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-          GITHUB_SHA: ${{ GITHUB_SHA }}
-          GITHUB_REF_NAME: ${{ GITHUB_REF_NAME }}
+          GITHUB_SHA: ${{ github.GITHUB_SHA }}
+          GITHUB_REF_NAME: ${{ github.GITHUB_REF_NAME }}
           GITHUB_REPOSITORY: ${{ github.repository }}
         # run: |
         #     prodRun=""
