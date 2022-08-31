@@ -1,11 +1,12 @@
-name: Test and deploy
+name: Production
 
 on:
   push:
     branches:
-      - develop
-      - 'feature/**'
-      - 'fix/**'
+      - 'hotfix/**'
+      - stage
+      - master
+  workflow_dispatch:
 
 jobs:
   lint-and-test:
@@ -14,6 +15,8 @@ jobs:
   deploy:
     needs: [lint-and-test]
     uses: ./.github/workflows/deploy.yaml
+    with:
+      vercel-args: '--prod'
     secrets:
       VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
       VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
