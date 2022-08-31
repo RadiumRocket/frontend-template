@@ -1,7 +1,5 @@
 name: Test and deploy
-env:
-  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
 on:
   push:
     branches:
@@ -11,59 +9,12 @@ on:
 
 jobs:
   lint-and-test:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [16.17.x]
-
-    steps:
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: 'yarn'
-
-      - name: Cache node modules
-        id: cache-nodemodules
-        uses: actions/cache@v2
-        env:
-          cache-name: cache-node-modules
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
-
-      - name: Install dependencies
-        if: steps.cache-nodemodules.outputs.cache-hit != 'true'
-        run: yarn install
-
-      - name: Type check
-        run: yarn type-check
-
-      - name: Check linting
-        run: yarn lint
-
-      - name: Run the tests
-        run: yarn test
+    uses: ./.github/workflows/lint-and-test.yaml
 
   deploy:
     needs: [lint-and-test]
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [16.17.x]
-
-    steps:
-      - uses: actions/checkout@v2
-      - uses: amondnet/vercel-action@v19
-        id: vercel
-        with:
-          github-comment: true
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+    uses: ./.github/workflows/deploy.yaml
+    secrets:
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
