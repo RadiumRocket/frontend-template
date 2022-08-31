@@ -3,7 +3,8 @@ name: Production
 on:
   push:
     branches:
-      - master
+      - 'hotfix/**'
+      - stage
   workflow_dispatch:
 
 jobs:
@@ -13,8 +14,6 @@ jobs:
   deploy:
     needs: [lint-and-test]
     uses: ./.github/workflows/deploy.yaml
-    with:
-      vercel-args: '--prod'
     secrets:
       VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
       VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
