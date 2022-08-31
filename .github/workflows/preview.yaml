@@ -5,6 +5,7 @@ on:
     branches:
       - 'hotfix/**'
       - stage
+      - uat
   workflow_dispatch:
 
 jobs:
