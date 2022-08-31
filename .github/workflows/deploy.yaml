@@ -2,17 +2,17 @@ name: Deploy job
 
 on:
   workflow_call:
-    # inputs:
-    #   vercel-args:
-    #     required: false
-    #     type: string
+    inputs:
+      vercel-args:
+        required: false
+        type: string
     secrets:
       VERCEL_TOKEN:
         required: true
-      # VERCEL_ORG_ID:
-      #   required: true
-      # VERCEL_PROJECT_ID:
-      #   required: true
+      VERCEL_ORG_ID:
+        required: true
+      VERCEL_PROJECT_ID:
+        required: true
 
 jobs:
   deploy:
