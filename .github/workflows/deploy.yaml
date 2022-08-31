@@ -2,18 +2,9 @@ name: Deploy job
 
 on:
   workflow_call:
-    inputs:
-      vercel-args:
-        required: false
-        type: string
     secrets:
       VERCEL_TOKEN:
         required: true
-      VERCEL_ORG_ID:
-        required: true
-      VERCEL_PROJECT_ID:
-        required: true
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -22,25 +13,13 @@ jobs:
         node-version: [16.17.x]
     steps:
       - uses: actions/checkout@v2
-      - name: Install Vercel CLI
-        run: npm install --global vercel@latest
+      - name: 'Deploy application'
+        run: |
+          prodRun=""
+          if [[ ${GITHUB_REF} == "refs/heads/master" ]]; then
+            prodRun="--prod"
+          fi
 
-      - name: Pull Vercel Environment Information
-        run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
-
-      - name: Build Project Artifacts
-        if:
-        run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
-
-      - name: Deploy Project Artifacts to Vercel
-        run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
-      # - uses: actions/checkout@v2
-      # - uses: amondnet/vercel-action@v19
-      #   id: vercel
-      #   with:
-      #     github-comment: true
-      #     vercel-args: ${{ inputs.vercel-args }}
-      #     vercel-token: ${{ secrets.VERCEL_TOKEN }}
-      #     github-token: ${{ secrets.GITHUB_TOKEN }}
-      #     vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-      #     vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          npx vercel --yes --token ${VERCEL_TOKEN} $prodRun
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
