@@ -2,18 +2,9 @@ name: Deploy job
 
 on:
   workflow_call:
-    inputs:
-      vercel-args:
-        required: false
-        type: string
     secrets:
       VERCEL_TOKEN:
         required: true
-      VERCEL_ORG_ID:
-        required: true
-      VERCEL_PROJECT_ID:
-        required: true
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -22,42 +13,13 @@ jobs:
         node-version: [16.17.x]
     steps:
       - uses: actions/checkout@v2
-      - name: Install Vercel CLI
-        run: npm install --global vercel@latest
       - name: 'Deploy application'
-        # run: |
-        #   vercel --token ${VERCEL_TOKEN} -m githubCommitSha=${GITHUB_SHA} -m githubCommitAuthorName=franco-marini -m githubCommitAuthorLogin=franco-marini -m githubDeployment=1 -m githubOrg=franco-marini -m githubRepo=${GITHUB_REPOSITORY} -m githubCommitOrg=franco-marini -m githubCommitRepo=${GITHUB_REPOSITORY} -m githubCommitMessage=try another method -m githubCommitRef=${GITHUB_REF_NAME}
-        # env:
-        #   VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-        #   GITHUB_SHA: ${{ github.GITHUB_SHA }}
-        #   GITHUB_REF_NAME: ${{ github.GITHUB_REF_NAME }}
-        #   GITHUB_REPOSITORY: ${{ github.repository }}
         run: |
           prodRun=""
-          if [[ ${GITHUB_REF} == "refs/heads/main" ]]; then
+          if [[ ${GITHUB_REF} == "refs/heads/master" ]]; then
             prodRun="--prod"
           fi
 
           npx vercel --yes --token ${VERCEL_TOKEN} $prodRun
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-
-      # - name: Pull Vercel Environment Information
-      #   run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
-
-      # - name: Build Project Artifacts
-      #   if:
-      #   run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
-
-      # - name: Deploy Project Artifacts to Vercel
-      #   run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
-      # - uses: actions/checkout@v2
-      # - uses: amondnet/vercel-action@v19
-      #   id: vercel
-      #   with:
-      #     github-comment: true
-      #     vercel-args: ${{ inputs.vercel-args }}
-      #     vercel-token: ${{ secrets.VERCEL_TOKEN }}
-      #     github-token: ${{ secrets.GITHUB_TOKEN }}
-      #     vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-      #     vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
