@@ -20,16 +20,14 @@ jobs:
             prodRun="--prod"
           fi
 
-          echo "::set-output name=test-url::$(npx vercel --yes --token ${VERCEL_TOKEN} $prodRun)\n"
+          echo "::set-output name=test-url::$(npx vercel --yes --token ${VERCEL_TOKEN} $prodRun)"
         id: deploy
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
       - name: Create commit comment
         uses: peter-evans/commit-comment@v2
+        if: github.ref != 'refs/heads/master'
         with:
           body: |
-            This is the url: ${{ steps.deploy.outputs.test-url }}
-            - With GitHub **Markdown**
-            - Created by [commit-comment][1]
-
-            [1]: https://github.com/peter-evans/commit-comment
+            **Deployed Successfully** :white_check_mark:
+            - You can test on this url: ${{ steps.deploy.outputs.test-url }}
