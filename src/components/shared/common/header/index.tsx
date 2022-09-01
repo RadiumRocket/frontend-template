@@ -7,7 +7,7 @@ const Header = () => {
     <header>
       <div className={styles.container}>
         <div className={styles.brand}>Radium Rocket</div>
-        <div className={styles.brand}>SHOW_ENV: {process.env.REACT_APP_SHOW_ENV}</div>
+        <div className={styles.brand}>SHOW_EV: {process.env.REACT_APP_SHOW_ENV}</div>
         <div>
           <a href="https://www.facebook.com/radiumrocket" target="_blank" rel="noreferrer">
             <img
