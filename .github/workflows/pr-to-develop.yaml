@@ -6,8 +6,8 @@ on:
       - develop
 
 jobs:
-  # lint-and-test:
-  #   uses: ./.github/workflows/lint-and-test.yaml
+  lint-and-test:
+    uses: ./.github/workflows/lint-and-test.yaml
 
   deploy-branch:
     needs: [lint-and-test]
