@@ -5,6 +5,7 @@ on:
     secrets:
       VERCEL_TOKEN:
         required: true
+
 jobs:
   deploy-and-comment:
     runs-on: ubuntu-latest

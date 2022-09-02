@@ -11,16 +11,25 @@ jobs:
 
   deploy-branch:
     needs: [lint-and-test]
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16.17.x]
     - uses: actions/checkout@v2
+
     - name: Install Vercel CLI
       run: npm install --global vercel@latest
+
     - name: Pull Vercel Environment Information
       run: vercel pull --yes --environment=development --token=${{ secrets.VERCEL_TOKEN }}
+
     - name: Build Project Artifacts
       run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
+
     - name: Deploy Project Artifacts to Vercel
+      run: |
+        echo "::set-output name=test-url::$(vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }})"
       id: deploy
-      run: echo "::set-output name=test-url::$(vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }})"
 
     - name: Comment PR
       uses: thollander/actions-comment-pull-request@v1
