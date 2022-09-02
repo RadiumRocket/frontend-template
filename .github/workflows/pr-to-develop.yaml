@@ -15,27 +15,28 @@ jobs:
     strategy:
       matrix:
         node-version: [16.17.x]
-    - uses: actions/checkout@v2
+    steps:
+      - uses: actions/checkout@v2
 
-    - name: Install Vercel CLI
-      run: npm install --global vercel@latest
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
 
-    # - name: Pull Vercel Environment Information
-    #   run: vercel pull --yes --environment=development --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Pull development envs
+        run: vercel pull --yes --environment=development --token=${{ secrets.VERCEL_TOKEN }}
 
-    # - name: Build Project Artifacts
-    #   run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Build Project Artifacts
+        run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
 
-    # - name: Deploy Project Artifacts to Vercel
-    #   run: |
-    #     echo "::set-output name=test-url::$(vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }})"
-    #   id: deploy
+      - name: Deploy Project Artifacts to Vercel
+        run: |
+          echo "::set-output name=test-url::$(vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }})"
+        id: deploy
 
-    # - name: Comment PR
-    #   uses: thollander/actions-comment-pull-request@v1
-    #   if: github.event_name == 'pull_request'
-    #   with:
-    #     message: |
-    #       **Deployed Successfully** :white_check_mark:
-    #       - You can test on this url: ${{ steps.deploy.outputs.test-url }}
-    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Comment PR
+        uses: thollander/actions-comment-pull-request@v1
+        if: github.event_name == 'pull_request'
+        with:
+          message: |
+            **Deployed Successfully** :white_check_mark:
+            - You can test on this url: ${{ steps.deploy.outputs.test-url }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
