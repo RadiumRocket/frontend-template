@@ -1,6 +1,9 @@
 name: Preview
 
 on:
+  push:
+    - stage
+    - uat
   pull_request:
     branches:
       - stage
