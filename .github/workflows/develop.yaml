@@ -1,11 +1,9 @@
 name: Develop or Pull request
 
 on:
-  push:
-    branches:
-      - develop
-  workflow_dispatch:
   pull_request:
+    - develop
+  workflow_dispatch:
 
 jobs:
   lint-and-test:

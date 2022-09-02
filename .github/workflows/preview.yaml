@@ -1,11 +1,10 @@
 name: Preview
 
 on:
-  push:
-    branches:
-      - 'hotfix/**'
-      - stage
-      - uat
+  pull_request:
+    - stage
+    - uat
+    - master
   workflow_dispatch:
 
 jobs:
