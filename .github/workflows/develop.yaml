@@ -2,7 +2,8 @@ name: Develop or Pull request
 
 on:
   pull_request:
-    - develop
+    branches:
+      - develop
   workflow_dispatch:
 
 jobs:

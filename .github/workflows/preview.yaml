@@ -2,9 +2,10 @@ name: Preview
 
 on:
   pull_request:
-    - stage
-    - uat
-    - master
+    branches:
+      - stage
+      - uat
+      - master
   workflow_dispatch:
 
 jobs:
