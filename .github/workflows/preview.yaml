@@ -3,9 +3,13 @@ name: Preview
 on:
   push:
     branches:
-      - 'hotfix/**'
       - stage
       - uat
+  pull_request:
+    branches:
+      - stage
+      - uat
+      - master
   workflow_dispatch:
 
 jobs:
