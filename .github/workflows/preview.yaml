@@ -3,11 +3,9 @@ name: Preview
 on:
   push:
     branches:
-      - stage
       - uat
   pull_request:
     branches:
-      - stage
       - uat
       - master
   workflow_dispatch:

@@ -1,7 +1,7 @@
-name: Deploy develop and test
+name: Pull request to develop
 
 on:
-  push:
+  pull_request:
     branches:
       - develop
 
@@ -9,21 +9,13 @@ jobs:
   lint-and-test:
     uses: ./.github/workflows/lint-and-test.yaml
 
-  deploy-develop-and-test:
+  deploy-branch:
     needs: [lint-and-test]
     - uses: actions/checkout@v2
     - name: Install Vercel CLI
       run: npm install --global vercel@latest
-
-    - name: Pull develop envs
+    - name: Pull Vercel Environment Information
       run: vercel pull --yes --environment=development --token=${{ secrets.VERCEL_TOKEN }}
-    - name: Build Project Artifacts
-      run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
-    - name: Deploy Project Artifacts to Vercel
-      run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
-
-    - name: Pull test envs
-      run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
     - name: Build Project Artifacts
       run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
     - name: Deploy Project Artifacts to Vercel
