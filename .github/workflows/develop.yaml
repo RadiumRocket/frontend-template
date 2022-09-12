@@ -17,9 +17,11 @@ jobs:
 
   sync-with-test:
     needs: [deploy-develop]
-    uses: devmasx/merge-branch@master
-    with:
-      type: now
-      from_branch: develop
-      target_branch: test
-      github_token: ${{ github.token }}
+    steps:
+      - name: Merge develop into test
+        uses: devmasx/merge-branch@master
+        with:
+          type: now
+          from_branch: develop
+          target_branch: test
+          github_token: ${{ github.token }}
