@@ -1,9 +1,6 @@
 name: Pull request to develop
 
 on:
-  push:
-    branches:
-      - test
   pull_request:
     branches:
       - develop

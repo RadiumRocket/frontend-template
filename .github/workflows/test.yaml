@@ -1,0 +1,12 @@
+name: Test deploy
+
+on:
+  push:
+    branches:
+      - test
+
+jobs:
+  deploy-develop:
+    uses: ./.github/workflows/deploy.yaml
+    secrets:
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
