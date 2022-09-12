@@ -21,6 +21,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Create test pull request
+        id: open-pr
         uses: repo-sync/pull-request@v2
         with:
           destination_branch: 'test'
