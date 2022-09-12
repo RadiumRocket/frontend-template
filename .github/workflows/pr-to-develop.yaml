@@ -1,20 +1,15 @@
-name: UAT deploy or PR to UAT or Prod
+name: Pull request to develop
 
 on:
-  push:
-    branches:
-      - uat
   pull_request:
     branches:
-      - uat
-      - master
-  workflow_dispatch:
+      - develop
 
 jobs:
   lint-and-test:
     uses: ./.github/workflows/lint-and-test.yaml
 
-  deploy:
+  deploy-branch:
     needs: [lint-and-test]
     uses: ./.github/workflows/deploy.yaml
     secrets:
