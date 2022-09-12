@@ -20,9 +20,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: everlytic/branch-merge@1.1.2
+      - name: pull-request
+        uses: repo-sync/pull-request@v2
         with:
-          github_token: ${{ github.token }}
-          source_ref: 'develop'
-          target_branch: 'test'
-          commit_message_template: '[Automated] Merged {source_ref} into target {target_branch}'
+          destination_branch: 'test'
+          github_token: ${{ secrets.GITHUB_TOKEN }}

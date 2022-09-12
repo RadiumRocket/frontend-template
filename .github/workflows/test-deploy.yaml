@@ -4,11 +4,6 @@ on:
   push:
     branches:
       - test
-  workflow_run:
-    types:
-      - completed
-    workflows:
-      - 'Develop deploy'
 
 jobs:
   deploy-test:
