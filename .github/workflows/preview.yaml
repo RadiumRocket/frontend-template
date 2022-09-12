@@ -1,4 +1,4 @@
-name: Preview
+name: UAT deploy or PR to UAT or Prod
 
 on:
   push:
