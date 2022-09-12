@@ -20,8 +20,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: pull-request
+      - name: Create test pull request
         uses: repo-sync/pull-request@v2
         with:
           destination_branch: 'test'
+          pr_title: 'Pulling develop into test' # Title of pull request
+          pr_body: ':crown: *An automated PR*'
           github_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Merge test pull request
+        uses: juliangruber/merge-pull-request-action@v1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          number: ${{steps.open-pr.outputs.pr_number}}
+          method: squash
+          repo: juliangruber/octokit-action
