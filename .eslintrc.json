@@ -23,7 +23,11 @@
               ["^\\."]
             ]
           }
-        ]
+        ],
+        "no-duplicate-imports": "error",
+        "semi": ["error", "always"],
+        "quotes": ["error", "single"],
+        "simple-import-sort/exports": "error"
       }
     }
   ],
@@ -39,11 +43,7 @@
   },
   "plugins": ["react", "@typescript-eslint", "simple-import-sort"],
   "rules": {
-    "no-duplicate-imports": "error",
-    "semi": ["error", "always"],
-    "quotes": ["error", "single"],
-    "simple-import-sort/imports": "error",
-    "simple-import-sort/exports": "error"
+    "prettier/prettier": ["error", { "endOfLine": "auto" }]
   },
   "ignorePatterns": ["build", "coverage", "*.html"]
 }
