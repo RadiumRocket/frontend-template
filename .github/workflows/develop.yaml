@@ -27,10 +27,10 @@ jobs:
           pr_title: 'Pulling develop into test' # Title of pull request
           pr_body: ':crown: *An automated PR*'
           github_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Show PR number
+        run: echo ${{steps.open-pr.outputs.pr_number}}
       - name: Merge test pull request
-        uses: juliangruber/merge-pull-request-action@v1
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          number: ${{steps.open-pr.outputs.pr_number}}
-          method: squash
-          repo: juliangruber/octokit-action
+        uses: 'pascalgn/automerge-action@v0.15.3'
+        env:
+          GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
+          PULL_REQUEST: '${{steps.open-pr.outputs.pr_number}}'
