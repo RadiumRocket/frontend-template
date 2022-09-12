@@ -25,8 +25,9 @@ jobs:
         uses: repo-sync/pull-request@v2
         with:
           destination_branch: 'test'
-          pr_title: '[AUTOMATED] Pulling develop into test' # Title of pull request
-          pr_body: ':robot_face: An automated PR'
+          pr_title: '[AUTOMATED] Pulling develop into test'
+          pr_body: ':robot: Automated PR to deploy test env on Vercel'
+          pr_label: automerge
           github_token: ${{ secrets.GITHUB_TOKEN }}
       - name: Show PR number
         run: |
