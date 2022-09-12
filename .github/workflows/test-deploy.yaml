@@ -1,10 +1,14 @@
 name: Test deploy
 
 on:
+  push:
+    branches:
+      - test
   workflow_run:
-    workflows: ['Develop deploy']
     types:
       - completed
+    workflows:
+      - 'Develop deploy'
 
 jobs:
   deploy-test:
