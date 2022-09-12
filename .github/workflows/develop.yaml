@@ -25,11 +25,13 @@ jobs:
         uses: repo-sync/pull-request@v2
         with:
           destination_branch: 'test'
-          pr_title: 'Pulling develop into test' # Title of pull request
-          pr_body: ':crown: *An automated PR*'
+          pr_title: '[AUTOMATED] Pulling develop into test' # Title of pull request
+          pr_body: ':robot_face: An automated PR'
           github_token: ${{ secrets.GITHUB_TOKEN }}
       - name: Show PR number
-        run: echo ${{steps.open-pr.outputs.pr_number}}
+        run: |
+          echo ${{ steps.open-pr.outputs.pr_number }}
+          echo ${{ steps.open-pr.outputs.pr_url }}
       - name: Merge test pull request
         uses: 'pascalgn/automerge-action@v0.15.3'
         env:
