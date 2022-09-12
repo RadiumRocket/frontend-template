@@ -1,4 +1,4 @@
-name: Deploy job
+name: Deploy and comment job
 
 on:
   workflow_call:
@@ -35,7 +35,7 @@ jobs:
             **Deployed Successfully** :white_check_mark:
             - You can test on this url: ${{ steps.deploy.outputs.test-url }}
 
-      - name: Comment PR
+      - name: Create PR comment
         uses: thollander/actions-comment-pull-request@v1
         if: github.event_name == 'pull_request'
         with:

@@ -7,7 +7,7 @@ jobs:
   lint-and-test:
     uses: ./.github/workflows/lint-and-test.yaml
 
-  deploy:
+  deploy-master:
     needs: [lint-and-test]
     uses: ./.github/workflows/deploy.yaml
     secrets:

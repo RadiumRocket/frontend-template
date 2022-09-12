@@ -6,7 +6,7 @@ on:
       - test
 
 jobs:
-  deploy-develop:
+  deploy-test:
     uses: ./.github/workflows/deploy.yaml
     secrets:
       VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
