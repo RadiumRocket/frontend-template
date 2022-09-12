@@ -20,8 +20,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: pull-request
+      - name: Create test pull request
+        id: open-pr
         uses: repo-sync/pull-request@v2
         with:
           destination_branch: 'test'
+          pr_title: '[AUTOMATED] Pulling develop into test'
+          pr_body: ':robot: Automated PR to deploy test env on Vercel'
+          pr_label: automerge
           github_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Show PR number
+        run: |
+          echo ${{ steps.open-pr.outputs.pr_number }}
+          echo ${{ steps.open-pr.outputs.pr_url }}
+      - name: Merge test pull request
+        uses: 'pascalgn/automerge-action@v0.15.3'
+        env:
+          GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
+          PULL_REQUEST: '${{steps.open-pr.outputs.pr_number}}'
