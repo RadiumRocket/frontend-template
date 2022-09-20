@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <footer className={styles.container}>
       <div className={styles.main}>
-        <div className={styles.appName}>App</div>
+        <div className={styles.appName}>App ultima version</div>
       </div>
       <div className={styles.license}>
         <div className={styles.copyright}>Copyright © 2021 Radium Rocket</div>
