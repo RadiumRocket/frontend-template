@@ -3,6 +3,11 @@ on:
   push:
     branches:
       - uat
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   deploy-uat:
     runs-on: ubuntu-latest
