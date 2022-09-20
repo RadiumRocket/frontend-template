@@ -19,9 +19,7 @@ jobs:
           git config --global user.name "${{ env.CI_COMMIT_AUTHOR }}"
           git config --global user.email "apps@radiumrocket.com"
           git fetch
-          git checkout develop
-          git checkout -b test
-          git push origin test -f
+          git push -f origin test
       - name: Deploy to Vercel Action
         uses: BetaHuhn/deploy-to-vercel-action@v1
         with:
