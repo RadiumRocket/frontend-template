@@ -6,10 +6,10 @@ const Footer = () => {
   return (
     <footer className={styles.container}>
       <div className={styles.main}>
-        <div className={styles.appName}>App ultima version</div>
+        <div className={styles.appName}>Frontend Template</div>
       </div>
       <div className={styles.license}>
-        <div className={styles.copyright}>Copyright © 2021 Radium Rocket</div>
+        <div className={styles.copyright}>Copyright © 2022 Radium Rocket</div>
         <div>
           <a href="https://www.facebook.com/radiumrocket" target="_blank" rel="noreferrer">
             <img
