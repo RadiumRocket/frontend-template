@@ -23,7 +23,7 @@ jobs:
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
           VERCEL_SCOPE: ${{ secrets.VERCEL_TEAM_NAME }}
           PRODUCTION: false
-          BUILD_ENV: |
+          BUILD_ENV: | # ADD ALL ENV VARIABLES HERE
             REACT_APP_SHOW_ENV=${{ secrets.REACT_APP_SHOW_ENV }}
           ALIAS_DOMAINS: |
             https://dev.app.template.radiumrocket.com
@@ -42,7 +42,7 @@ jobs:
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
           VERCEL_SCOPE: ${{ secrets.VERCEL_TEAM_NAME }}
           PRODUCTION: false
-          BUILD_ENV: |
+          BUILD_ENV: | # ADD ALL ENV VARIABLES HERE
             REACT_APP_SHOW_ENV=${{ secrets.REACT_APP_SHOW_ENV }}
           ALIAS_DOMAINS: |
             https://test.app.template.radiumrocket.com
