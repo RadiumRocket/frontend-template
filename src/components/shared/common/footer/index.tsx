@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <footer className={styles.container}>
       <div className={styles.main}>
-        <div className={styles.appName}>Frontend Template</div>
+        <div className={styles.appName}>Frontend Template (change4)</div>
       </div>
       <div className={styles.license}>
         <div className={styles.copyright}>Copyright © 2022 Radium Rocket</div>
