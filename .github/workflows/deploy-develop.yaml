@@ -4,13 +4,10 @@ on:
     branches:
       - develop
 jobs:
-  # tests:
-    # uses: ./.github/workflows/tests.yaml
   deploy-develop:
     runs-on: ubuntu-latest
     environment: develop
-    # needs: [tests]
-    # if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -30,6 +27,7 @@ jobs:
   deploy-test:
     runs-on: ubuntu-latest
     environment: test
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
     steps:
       - name: Checkout
         uses: actions/checkout@v2
