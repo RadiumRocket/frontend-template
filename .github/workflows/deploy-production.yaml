@@ -2,7 +2,7 @@ name: Deploy Develop
 on:
   push:
     branches:
-      - uat
+      - master
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
