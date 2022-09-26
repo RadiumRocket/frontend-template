@@ -14,10 +14,10 @@ jobs:
     secrets: inherit
     with:
       environment: develop
-      domain: https://dev.${{ secrets.APP_DOMAIN }}
+      domain: dev.
   deploy-test:
     uses: ./.github/workflows/deployment.yaml
     secrets: inherit
     with:
       environment: test
-      domain: https://test.${{ secrets.APP_DOMAIN }}
+      domain: test.

@@ -14,5 +14,5 @@ jobs:
     secrets: inherit
     with:
       environment: uat
-      domain: https://uat.${{ secrets.APP_DOMAIN }}
+      domain: uat.
 
