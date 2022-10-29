@@ -3,7 +3,7 @@
   "less.validate": false,
   "scss.validate": false,
   "editor.detectIndentation": false,
-  "editor.insertSpaces": true,
+  "editor.insertSpaces": false,
   "editor.tabSize": 2,
   "editor.bracketPairColorization.enabled": true,
   "editor.guides.bracketPairs": "active",
@@ -16,5 +16,17 @@
   "eslint.validate": ["javascript", "javascriptreact", "html", "typescriptreact"],
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "typescript.preferences.importModuleSpecifier": "shortest",
-  "cSpell.words": ["stylelint", "nodemodules", "vercel"]
+  "cSpell.words": ["stylelint", "nodemodules", "vercel"],
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }

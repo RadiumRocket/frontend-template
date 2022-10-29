@@ -1,5 +1,10 @@
 # Getting started with ${App Name}
 
+## Before forked or push to the new repo
+
+1. Update the PR template to use the Jira or Trello project
+2. Rename the `App Name` on this file
+
 ## Features
 
 **TODO**: Add libraries when they are fully integrated
